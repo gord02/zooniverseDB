@@ -1,4 +1,7 @@
 
+import numpy as np
+# import requests
+
 from sanic_openapi import doc
 import motor.motor_asyncio
 import asyncio
@@ -57,7 +60,7 @@ class Event:
 
 # The function is used to create event inside database
 async def createEvent():
-    event: dict = {
+    event_model: dict = {
         "event": 1,
         "dm": 123.4,
         "snr": 7.9,
@@ -71,8 +74,45 @@ async def createEvent():
         "zooniverse_classification": "INCOMPLETE",
         "expert_classification": "INCOMPLETE",
     }
-    result = await db.events.insert_one(event) 
 
+    # randomizes the event model so different events can populate the DB.
+    for _ in range(1000):
+        event_model["event"] = int(np.random.choice(range(9386707, 9396707)))
+        event_model["dm"] = float(np.random.random() * 10000)
+        event_model["snr"] = float(np.random.random() + 7.5)
+        event_model["beams"] = [
+            int(
+                np.random.choice(
+                    list(range(0, 256))
+                    + list(range(1000, 1256))
+                    + list(range(2000, 2256))
+                    + list(range(3000, 3256))
+                )
+            )
+            for _ in range(np.random.choice(range(1, 5)))
+        ]
+        event_model["data_paths"] = {}
 
+        for beam in event_model["beams"]:
+            event_model["data_paths"][beam] = f"path to {beam}"
+
+        event_model["transfer_status"] = np.random.choice(
+            ["INCOMPLETE"] * 100 + ["COMPLETE"] * 20 + ["CLEANED"] * 30 + ["FAILED"] * 10
+        )
+        event_model["zooniverse_classification"] = np.random.choice(
+            ["INCOMPLETE"] * 100 + ["GOOD"] * 20 + ["BAD"] * 30
+        )
+        if event_model["zooniverse_classification"] in ["INCOMPLETE", "BAD"]:
+            event_model["expert_classification"] = "INCOMPLETE"
+        else:
+            event_model["expert_classification"] = np.random.choice(
+                ["INCOMPLETE", "GOOD", "BAD"]
+            )
+        # r = requests.post(url, json=event_model)
+        # if not r.status_code == 200:
+        #     print(r.text)
+    event = event_model
+
+# Runs createEvent function asynchronously 
 # loop = asyncio.get_event_loop()
 # loop.run_until_complete(createEvent())
