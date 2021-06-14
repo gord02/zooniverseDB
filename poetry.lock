@@ -48,6 +48,46 @@ python-versions = "*"
 test = ["Cython (==0.29.22)"]
 
 [[package]]
+name = "maestro"
+version = "2020.12"
+description = "CHIME/FRB Backend Framework"
+category = "main"
+optional = false
+python-versions = "^3.7"
+develop = false
+
+[package.dependencies]
+attrs = "^19.3.0"
+chime-frb-api = "^2020.6.2"
+chime-frb-constants = "^2020.7"
+click = "^7.1.2"
+dunamai = "^1.2.0"
+mergedeep = "^1.3.0"
+Pygments = "^2.6.1"
+pyyaml = "^5.3.1"
+requests = "^2.24.0"
+sanic = "^20.6.3"
+sanic-cors = "^0.10.0"
+sanic_openapi = "0.6"
+schema = "^0.7.3"
+toml = "^0.10.1"
+
+[package.extras]
+graphql = ["strawberry-graphql (>=0.44.2,<0.45.0)"]
+blueprints = []
+rethink = ["rethinkdb (>=2.4.7,<3.0.0)", "tenacity (>=6.2.0,<7.0.0)"]
+docker = ["docker (>=4.2.2,<5.0.0)"]
+mongodb = ["motor (>=2.2.0,<3.0.0)", "tenacity (>=6.2.0,<7.0.0)", "pymongo (>=3.11.0,<4.0.0)"]
+postgres = ["asyncpg (>=0.21.0,<0.22.0)", "sqlalchemy (>=1.3.19,<2.0.0)", "psycopg2-binary (>=2.8.6,<3.0.0)"]
+influxdb = ["influxdb-client (>=1.12.0,<2.0.0)"]
+
+[package.source]
+type = "git"
+url = "ssh://git@github.com/CHIMEFRB/maestro.git"
+reference = "main"
+resolved_reference = "aff9e704482900806666998d8a339c876ff1d1ba"
+
+[[package]]
 name = "more-itertools"
 version = "8.8.0"
 description = "More routines for operating on iterables, beyond itertools"
@@ -295,6 +335,12 @@ httptools = [
     {file = "httptools-0.2.0-cp39-cp39-win_amd64.whl", hash = "sha256:200fc1cdf733a9ff554c0bb97a4047785cfaad9875307d6087001db3eb2b417f"},
     {file = "httptools-0.2.0.tar.gz", hash = "sha256:94505026be56652d7a530ab03d89474dc6021019d6b8682281977163b3471ea0"},
 ]
+maestro = []
+markdown = [
+    {file = "Markdown-3.3.3-py3-none-any.whl", hash = "sha256:c109c15b7dc20a9ac454c9e6025927d44460b85bd039da028d85e2b6d0bcc328"},
+    {file = "Markdown-3.3.3.tar.gz", hash = "sha256:5d9f2b5ca24bc4c7a390d22323ca4bad200368612b5aaa7796babf971d2b2f18"},
+]
+
 more-itertools = [
     {file = "more-itertools-8.8.0.tar.gz", hash = "sha256:83f0308e05477c68f56ea3a888172c78ed5d5b3c282addb67508e7ba6c8f813a"},
     {file = "more_itertools-8.8.0-py3-none-any.whl", hash = "sha256:2cf89ec599962f2ddc4d568a05defc40e0a587fbc10d5989713638864c36be4d"},
