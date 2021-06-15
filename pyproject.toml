@@ -6,6 +6,7 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+maestro = {git = "ssh://git@github.com/CHIMEFRB/maestro.git", branch="main"}
 numpy = "^1.20.3"
 sanic-openapi = "^21.3.2"
 motor = "^2.4.0"
