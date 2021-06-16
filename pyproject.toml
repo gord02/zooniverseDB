@@ -5,10 +5,8 @@ description = ""
 authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-maestro = {git = "ssh://git@github.com/CHIMEFRB/maestro.git", branch="main"}
+maestro = {git = "ssh://git@github.com/chimefrb/maestro.git", rev = "main", extras = ["mongodb", "prometheus"]}
 numpy = "^1.20.3"
-sanic-openapi = "^21.3.2"
 motor = "^2.4.0"
 
 [tool.poetry.dev-dependencies]
