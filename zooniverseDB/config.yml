@@ -1,0 +1,20 @@
+# Defaults
+default:
+  backend:
+    name: zooniverseDB
+  resources:
+    - mongodb
+development:
+  backend:
+    port: 8000 # change?
+  resources:
+    mongodb:
+      host: "localhost"
+  # clients:
+  #   default:
+  #     # uri: "<%= mongodb://localhost:8000 %>"
+  #     uri: "mongodb://localhost:8000"
+production: # add in section?
+  backend:
+    workers: 0
+    port: 8000
